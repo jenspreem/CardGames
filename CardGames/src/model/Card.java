@@ -2,15 +2,15 @@ package model;
 
 import java.io.File;
 
-public class Card {
-	public enum Face{
+public class Card implements Comparable<Card>{
+	public enum Suit{
 		HEARTS,
         DIAMONDS,
         SPADES,
         CLUBS
 	}
 	
-	public enum Suit{
+	public enum Face{
 		TWO,
 		THREE,
 		FOUR,
@@ -60,6 +60,16 @@ public class Card {
 	}
 	public void setPicFile(File picFile) {
 		this.picFile = picFile;
+	}
+
+
+
+
+
+	@Override
+	public int compareTo(Card o) {
+		// TODO Auto-generated method stub
+		return this.getFace().compareTo(o.getFace());
 	}
 	
 	
