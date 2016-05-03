@@ -13,6 +13,10 @@ public class Hand {
 		return this.cards.get(i);
 	}
 	
+	public ArrayList<Card> getCardsDrawn(){
+		return cards;
+	}
+	
 	public void sort(){
 		this.cards.sort(null);
 	}
