@@ -30,11 +30,12 @@ public class Card implements Comparable<Card>{
 	private Suit suit;
 	private File picFile;
 	private String picloc ="./images";
+	private String picextension=".png";
 	
 	public Card(Face f, Suit s){
 		this.face=f;
 		this.suit=s;
-		this.picFile=new File(picloc+"/"+s.name()+"/"+f.name());
+		this.picFile=new File(picloc+"/"+s.name()+"_"+f.name()+picextension);
 		
 		
 	}

@@ -1,6 +1,8 @@
 package model;
 
 import static org.junit.Assert.*;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -62,15 +64,8 @@ public class CardTest {
 	
 	}
 
-	@Test
-	public void testGetPicFile() {
-		fail("Not yet implemented");
-	}
 
-	@Test
-	public void testSetPicFile() {
-		fail("Not yet implemented");
-	}
+
 
 	@Test
 	public void testCompareTo() {
@@ -79,6 +74,19 @@ public class CardTest {
 		assert(cardlist.get(1).compareTo(cardlist.get(4))<0);
 
 		
+	}
+	@Test
+	public void testPicfileLocationGetandSet(){
+
+		assertEquals(cardlist.get(0).getPicFile().getPath(),"./images/SPADES_ACE.png");
+		assertEquals(cardlist.get(1).getPicFile().getPath(),"./images/HEARTS_EIGHT.png");
+		
+		assertEquals(cardlist.get(2).getPicFile().getPath(),"./images/SPADES_NINE.png");
+		cardlist.get(1).setPicFile(new File("AYY-LMAO"));
+		assertEquals(cardlist.get(1).getPicFile().getPath(),"AYY-LMAO");
+
+
+
 	}
 
 }

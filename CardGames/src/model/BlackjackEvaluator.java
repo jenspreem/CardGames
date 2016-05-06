@@ -1,16 +1,15 @@
-package controller;
+package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
 
-import model.Card;
-import model.Hand;
 import static model.Card.*;
 
 public class BlackjackEvaluator {
-	static final Map<Face,Integer> FaceValues;
+	
+	private static final Map<Face,Integer> FaceValues;
 	static 
 	{	
 		Map<Face,Integer> aMap = new EnumMap<Face,Integer>(Face.class);
@@ -22,7 +21,7 @@ public class BlackjackEvaluator {
         FaceValues = Collections.unmodifiableMap(aMap);
     }
 
-	public int getScore(Hand hand){
+	public static int getScore(Hand hand){
 		int minscore=0;
 		int maxscore=0;
 		ArrayList<Card> cards = hand.getCardsDrawn();
@@ -52,4 +51,6 @@ public class BlackjackEvaluator {
 		else return maxscore;
 		
 	}
+	
+	
 }
