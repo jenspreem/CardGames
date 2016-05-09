@@ -29,7 +29,7 @@ public class Card implements Comparable<Card>{
 	private Face face;
 	private Suit suit;
 	private File picFile;
-	private String picloc ="./images";
+	private String picloc ="/images";
 	private String picextension=".png";
 	
 	public Card(Face f, Suit s){
