@@ -13,7 +13,7 @@ public class BlackjackEvaluator {
 	static 
 	{	
 		Map<Face,Integer> aMap = new EnumMap<Face,Integer>(Face.class);
-        int[] vals={1,2,3,4,5,6,7,8,9,10,10,10,10};
+        int[] vals={2,3,4,5,6,7,8,9,10,10,10,10,11};
         for (int i=0;i < Face.values().length;i++)
         {
         	aMap.put(Face.values()[i],vals[i]);
@@ -21,20 +21,20 @@ public class BlackjackEvaluator {
         FaceValues = Collections.unmodifiableMap(aMap);
     }
 
-	public static int getScore(Hand hand){
+	public static BpointStatus getScore(Hand hand){
 		int minscore=0;
 		int maxscore=0;
 		ArrayList<Card> cards = hand.getCardsDrawn();
 		for (Card c:cards)
 		{
-			minscore=minscore+FaceValues.get(c.getFace());
+			maxscore=maxscore+FaceValues.get(c.getFace());
 		}
-		//calc maxscore
+		//calc min
 		for (Card c:cards)
 		{
 			if(c.getFace()==Face.ACE)
 			{
-				maxscore=maxscore+11;
+				minscore=minscore+1;
 			}
 			else
 			{
@@ -45,11 +45,14 @@ public class BlackjackEvaluator {
 		//return minscore if minscore busts otherwise maxscore bust or not
 		if (minscore >21)
 		{
-		    return minscore;
+		    return new BpointStatus(true,minscore);
 		}
 
-		else return maxscore;
-		
+		else if (maxscore>21){
+			return new BpointStatus(true,maxscore);
+		}
+		else return new BpointStatus(false,maxscore);
+		//something fishy do a evaluator test
 	}
 	
 	

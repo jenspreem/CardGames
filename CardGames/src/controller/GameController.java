@@ -12,18 +12,13 @@ import model.BModel;
 import model.Card;
 import model.Deck;
 import model.Hand;
-import model.Player;
+
 
 public class GameController implements Initializable{
-	private  enum Victory{
-		PLAYERWIN,
-		AIWIN,
-		DRAW
-		
-	}
+
 	
 	private BModel model;
-	private Deck deck;
+	
 	
 	@FXML 
     private Button drawButton; // Value injected by FXMLLoader
@@ -42,46 +37,51 @@ public class GameController implements Initializable{
 		model=m;
 	}
 	
-	private Victory getWinner(Player p1, Player p2){
-		int s1=p1.getbScore();
-		int s2=p2.getbScore();
-		//add busts!
-		if (s1>s2){return Victory.PLAYERWIN;}
-		if (s1<s2){return Victory.AIWIN;}
-		return Victory.DRAW;
-	}
+
 	
 	private void show(){
-		Player ai =model.getAi_player();
-		Player hum = model.getHum_player();
-		for (Card c:ai.getHand().getCardsDrawn()){
+		
+		aiHandfield.getChildren().clear();
+		for (Card c:model.getAiHand().getCardsDrawn()){
 			Image image=new Image(c.getPicFile().getPath());
 			ImageView iv2 = new ImageView();
 	        iv2.setImage(image);
 	        aiHandfield.getChildren().add(iv2);
-			
-		}
-		for (Card c:hum.getHand().getCardsDrawn()){
+	    }
+		playerHandfield.getChildren().clear();
+		for (Card c:model.getHumHand().getCardsDrawn()){
 			Image image=new Image(c.getPicFile().getPath());
 			ImageView iv2 = new ImageView();
 	        iv2.setImage(image);
 	        playerHandfield.getChildren().add(iv2);
+	    }		
+	
+	}
+	
+	@FXML
+	private void hitAction(){
+		
+		
+	}
+
+	@FXML
+	private void drawAction(){
+		model.hum_draw();
+		if (model.getHumScore().bust){
+			//implement pop-up/message window
+			show();
+			System.out.println("Player busted! "+ model.getHumScore().points);
 			
+		}
+		else {show();System.out.println("OK! "+ model.getHumScore().points);
 		}
 		
 	}
-	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// just test button-attributes
-		drawButton.setText("DRAW");
-		holdButton.setText("HOLD");
-		//get deck to modify
-		deck=model.getDeck();
-		//one card to dealer 
-		model.getAi_player().drawCard(deck);
-		//show model as it is
+		model.hum_draw();
+		model.hum_draw();
 		show();
 
         

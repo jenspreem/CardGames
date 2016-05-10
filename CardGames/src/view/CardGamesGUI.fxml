@@ -12,8 +12,8 @@
   <children>
     <HBox fx:id="aiHandfield" layoutX="100.0" layoutY="50.0" prefHeight="100.0" prefWidth="200.0" />
     <HBox fx:id="playerHandfield" layoutX="100.0" layoutY="200.0" prefHeight="100.0" prefWidth="200.0" />
-    <Button fx:id="drawButton" layoutX="220" layoutY="300" prefWidth="80" mnemonicParsing="false" text="DRAW" />
-    <Button fx:id="holdButton" layoutX="300" layoutY="300" prefWidth="80" mnemonicParsing="false" text="Button" />
+    <Button fx:id="drawButton" layoutX="220" layoutY="300" prefWidth="80" mnemonicParsing="false" text="HIT" onAction="#hitAction"/>
+    <Button fx:id="holdButton" layoutX="300" layoutY="300" prefWidth="80" mnemonicParsing="false" text="DRAW" onAction="#drawAction" />
     <MenuBar layoutX="0.0" layoutY="0.0" prefWidth="600.0">
       <menus>
         <Menu mnemonicParsing="false" text="File">
