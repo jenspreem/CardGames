@@ -42,17 +42,17 @@ public class BlackjackEvaluator {
 		
 			}
 		}
-		//return minscore if minscore busts otherwise maxscore bust or not
+		//if minscore bust then this is it
 		if (minscore >21)
 		{
 		    return new BpointStatus(true,minscore);
 		}
-
+		//if maxscore busts then use minscore
 		else if (maxscore>21){
-			return new BpointStatus(true,maxscore);
+			return new BpointStatus(false,minscore);
 		}
+		//if maxscore ok use maxscore
 		else return new BpointStatus(false,maxscore);
-		//something fishy do a evaluator test
 	}
 	
 	

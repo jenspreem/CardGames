@@ -72,7 +72,10 @@ public class Card implements Comparable<Card>{
 		// TODO Auto-generated method stub
 		return this.getFace().compareTo(o.getFace());
 	}
-	
+	@Override
+	public String toString(){
+		return this.face.toString()+"_"+suit.toString();
+	}
 	
 	
 }

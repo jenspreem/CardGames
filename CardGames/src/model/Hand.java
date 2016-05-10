@@ -20,7 +20,10 @@ public class Hand {
 		this.cards.add(d.draw());
 	}
 	
-	
+	protected void  addCard(Card c){
+		//just for tests really
+		this.cards.add(c);
+	}
 	public ArrayList<Card> getCardsDrawn(){
 		return cards;
 	}
