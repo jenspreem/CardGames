@@ -2,7 +2,7 @@ package view;
 	
 import java.io.IOException;
 
-import controller.GameController;
+import controller.BlackJackController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -21,11 +21,11 @@ public class Main extends Application {
 		//loader loads fxml modified controllerfactory
 		//allows us to attach our model to controller on creation
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/view/CardGamesGUI.fxml"));
+		loader.setLocation(getClass().getResource("/view/BlackJackGUI.fxml"));
 		loader.setControllerFactory(new Callback<Class<?>, Object>() {
 	        @Override
 	        public Object call(Class<?> aClass) {
-	            return new GameController(model);
+	            return new BlackJackController(model);
 	        }
 	    });
 		

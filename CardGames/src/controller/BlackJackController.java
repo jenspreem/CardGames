@@ -14,26 +14,26 @@ import model.Deck;
 import model.Hand;
 
 
-public class GameController implements Initializable{
+public class BlackJackController implements Initializable{
 
 	
 	private BModel model;
 	
 	
 	@FXML 
-    private Button drawButton; // Value injected by FXMLLoader
+    private Button hitButton; // Value injected by FXMLLoader
 	@FXML 
-    private Button holdButton; // Value injected by FXMLLoader
+    private Button drawButton; // Value injected by FXMLLoader
 	@FXML
 	private HBox aiHandfield; // Value injected by FXMLLoader
 	@FXML
 	private HBox playerHandfield; // Value injected by FXMLLoader
 	
-	private GameController(){
+	private BlackJackController(){
 		//just because
 	}
 	
-	public GameController(BModel m){
+	public BlackJackController(BModel m){
 		model=m;
 	}
 	
@@ -60,7 +60,30 @@ public class GameController implements Initializable{
 	
 	@FXML
 	private void hitAction(){
+		drawButton.setDisable(true);
+		//now dealer should draw up to 17
+		while (model.getAiScore().points<17){
+			model.ai_draw();
+			show();
+		}
+		//now calculate victory?
+		if(model.getAiScore().bust){
+			//implement pop-up?
+			System.out.println("Ai busted! "+ model.getAiScore().points);
+
+		}
+		else {
+			if(model.getAiScore().points==model.getHumScore().points){
+				System.out.println("Draw!");
+			}
+			else  if (model.getAiScore().points>model.getHumScore().points){
+					System.out.println("Dealer wins! "+ model.getAiScore().points);;
+				}
+			else if (model.getAiScore().points<model.getHumScore().points){
+				System.out.println("Player wins! "+ model.getHumScore().points);;
+			}
 		
+		}
 		
 	}
 
@@ -72,8 +95,6 @@ public class GameController implements Initializable{
 			show();
 			System.out.println("Player busted! "+ model.getHumScore().points);
 			
-		}
-		else {show();System.out.println("OK! "+ model.getHumScore().points);
 		}
 		
 	}
