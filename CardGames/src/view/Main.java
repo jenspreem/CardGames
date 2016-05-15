@@ -29,7 +29,7 @@ public class Main extends Application {
 	        }
 	    });
 		
-	    // setting the stage
+
 	    AnchorPane pane =  (AnchorPane) loader.load();
 	    Scene scene = new Scene( pane );
 	    primaryStage.setScene( scene );
