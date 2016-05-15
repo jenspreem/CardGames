@@ -2,12 +2,17 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import view.MessageWin;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.stage.Popup;
+import javafx.stage.PopupWindow;
+import javafx.stage.Stage;
 import model.BModel;
 import model.Card;
 import model.Deck;
@@ -18,6 +23,9 @@ public class BlackJackController implements Initializable{
 
 	
 	private BModel model;
+	private Stage stage;
+	private PopupWindow pop;
+	MessageWin mw =new MessageWin();
 	
 	
 	@FXML 
@@ -35,6 +43,10 @@ public class BlackJackController implements Initializable{
 	
 	public BlackJackController(BModel m){
 		model=m;
+	}
+	
+	public void addStage(Stage s){
+		stage=s;
 	}
 	
 
@@ -90,10 +102,18 @@ public class BlackJackController implements Initializable{
 	@FXML
 	private void drawAction(){
 		model.hum_draw();
+		show();
 		if (model.getHumScore().bust){
 			//implement pop-up/message window
-			show();
+			stage=(Stage) hitButton.getScene().getWindow();
+			mw.setLabel("Player busted!");
+			pop=mw.getPop();
+			
+			pop.show(stage);
+			
 			System.out.println("Player busted! "+ model.getHumScore().points);
+			
+			
 			
 		}
 		
@@ -103,6 +123,7 @@ public class BlackJackController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		model.hum_draw();
 		model.hum_draw();
+
 		show();
 
         
