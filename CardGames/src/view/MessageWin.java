@@ -1,11 +1,15 @@
 package view;
 
+
+
+import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
+import javafx.stage.PopupWindow;
 
-public class MessageWin {
+public class MessageWin   {
 
     final Label label = new Label();
     
@@ -24,15 +28,16 @@ public class MessageWin {
    
    public MessageWin(){
 	   
+	popUpVBox.setStyle("-fx-background-color: #D6D6D6;");
+	popUpVBox.setStyle("-fx-border-color: black; -fx-border-width: 1px; ");
     popUpVBox.getChildren().add(label);
     popUpVBox.getChildren().add(ok);
     
     popup.setAutoFix(false);
     popup.setHideOnEscape(true);
     popup.getContent().addAll(popUpVBox);
-    popup.centerOnScreen();
-    //popup.setX(250);
-    //popup.setY(175);
+  //paneks wm-i kuulama vanem-akna positsiooni ja s2tiks teda ennas vastavalt
+
     }
 
 }

@@ -29,11 +29,17 @@ public class Main extends Application {
 	        }
 	    });
 		
-
+		
 	    AnchorPane pane =  (AnchorPane) loader.load();
+		BlackJackController bc = loader.getController();
+		//the easy way - creates state though,
+		//depends on order in main function
+	    bc.addStage(primaryStage);
+	
 	    Scene scene = new Scene( pane );
 	    primaryStage.setScene( scene );
 	    primaryStage.setTitle( "CardGames" );
+	
 	    primaryStage.show();
 	    
 	  }

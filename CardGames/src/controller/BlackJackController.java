@@ -4,19 +4,20 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import view.MessageWin;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.stage.Popup;
-import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 import model.BModel;
 import model.Card;
-import model.Deck;
-import model.Hand;
+
 
 
 public class BlackJackController implements Initializable{
@@ -24,7 +25,6 @@ public class BlackJackController implements Initializable{
 	
 	private BModel model;
 	private Stage stage;
-	private PopupWindow pop;
 	MessageWin mw =new MessageWin();
 	
 	
@@ -37,8 +37,9 @@ public class BlackJackController implements Initializable{
 	@FXML
 	private HBox playerHandfield; // Value injected by FXMLLoader
 	
+	@SuppressWarnings("unused")
 	private BlackJackController(){
-		//just because
+		//don't want people using it without model
 	}
 	
 	public BlackJackController(BModel m){
@@ -78,22 +79,23 @@ public class BlackJackController implements Initializable{
 			model.ai_draw();
 			show();
 		}
-		//now calculate victory?
+		//now calculate victory
 		if(model.getAiScore().bust){
-			//implement pop-up?
-			System.out.println("Ai busted! "+ model.getAiScore().points);
-
+			mw.setLabel("Dealer busted!");
+			mw.getPop().show(stage);
 		}
 		else {
 			if(model.getAiScore().points==model.getHumScore().points){
-				System.out.println("Draw!");
+				mw.setLabel("It's a Draw!");
+				mw.getPop().show(stage);
 			}
 			else  if (model.getAiScore().points>model.getHumScore().points){
-					System.out.println("Dealer wins! "+ model.getAiScore().points);;
+				mw.setLabel("Dealer wins!");
+				mw.getPop().show(stage);
 				}
 			else if (model.getAiScore().points<model.getHumScore().points){
-				System.out.println("Player wins! "+ model.getHumScore().points);;
-			}
+				mw.setLabel("Player wins!");
+				mw.getPop().show(stage);			}
 		
 		}
 		
@@ -105,32 +107,27 @@ public class BlackJackController implements Initializable{
 		show();
 		if (model.getHumScore().bust){
 			//implement pop-up/message window
-			stage=(Stage) hitButton.getScene().getWindow();
 			mw.setLabel("Player busted!");
-			pop=mw.getPop();
-			
-			pop.show(stage);
-			
-			System.out.println("Player busted! "+ model.getHumScore().points);
-			
-			
-			
+			mw.getPop().show(stage);
+				
 		}
 		
 	}
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	public void initialize(URL location, ResourceBundle resources) {		
 		model.hum_draw();
 		model.hum_draw();
-
 		show();
-
-        
-		
 
 		
 	}
+
+	
+
+
+
+
 }
 
 
