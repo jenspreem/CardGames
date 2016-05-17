@@ -1,27 +1,34 @@
 package view;
 
-
-
-import javafx.beans.value.ChangeListener;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
-import javafx.stage.PopupWindow;
 
 public class MessageWin   {
 
-    final Label label = new Label();
-    
+    final Label label = new Label();  
     Button ok = new Button("ok");
-    
-
     VBox popUpVBox = new VBox();
     Popup popup = new Popup();
 
+    
+	EventHandler<ActionEvent> handler = new EventHandler<ActionEvent>() {
+        public void handle(ActionEvent event) {
+           ok.getScene().getWindow().hide();       
+           event.consume();
+        }
+    };
+    
+    
     public Popup getPop(){
     	return popup;
     }
+    
+    
+    
    public void setLabel(String s){
 	   label.setText(s);
    }
@@ -32,12 +39,14 @@ public class MessageWin   {
 	popUpVBox.setStyle("-fx-border-color: black; -fx-border-width: 1px; ");
     popUpVBox.getChildren().add(label);
     popUpVBox.getChildren().add(ok);
+    ok.setOnAction(handler);
     
     popup.setAutoFix(false);
     popup.setHideOnEscape(true);
     popup.getContent().addAll(popUpVBox);
-  //paneks wm-i kuulama vanem-akna positsiooni ja s2tiks teda ennas vastavalt
 
     }
+   
+
 
 }

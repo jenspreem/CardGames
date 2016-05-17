@@ -37,6 +37,16 @@ public class BModel {
 		return hum_player;
 	}
 	
+
+	
+	public void reset(){
+		//why create new BModel instance just replace fields
+		//better/worse?
+		hum_player=new Hand();
+		ai_player=new Hand();
+		deck=new Deck();
+		deck.shuffle();
+	}
 }
 	
 	

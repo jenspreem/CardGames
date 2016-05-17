@@ -14,6 +14,8 @@
     <HBox fx:id="playerHandfield" layoutX="100.0" layoutY="200.0" prefHeight="100.0" prefWidth="200.0" />
     <Button fx:id="hitButton" layoutX="220" layoutY="300" prefWidth="80" mnemonicParsing="false" text="HIT" onAction="#hitAction"/>
     <Button fx:id="drawButton" layoutX="300" layoutY="300" prefWidth="80" mnemonicParsing="false" text="DRAW" onAction="#drawAction" />
+    <Button fx:id="newButton" layoutX="220" layoutY="325" prefWidth="160" mnemonicParsing="false" text="NEW GAME" onAction="#newAction" />
+    
     <MenuBar layoutX="0.0" layoutY="0.0" prefWidth="600.0">
       <menus>
         <Menu mnemonicParsing="false" text="File">

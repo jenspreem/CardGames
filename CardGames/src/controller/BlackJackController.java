@@ -4,10 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import view.MessageWin;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -82,22 +78,24 @@ public class BlackJackController implements Initializable{
 		//now calculate victory
 		if(model.getAiScore().bust){
 			mw.setLabel("Dealer busted!");
-			mw.getPop().show(stage);
+
 		}
 		else {
 			if(model.getAiScore().points==model.getHumScore().points){
 				mw.setLabel("It's a Draw!");
-				mw.getPop().show(stage);
-			}
+
+				}
 			else  if (model.getAiScore().points>model.getHumScore().points){
 				mw.setLabel("Dealer wins!");
-				mw.getPop().show(stage);
 				}
 			else if (model.getAiScore().points<model.getHumScore().points){
 				mw.setLabel("Player wins!");
-				mw.getPop().show(stage);			}
-		
+				}
+			
 		}
+		hitButton.setDisable(true);
+		mw.getPop().show(stage);
+		
 		
 	}
 
@@ -112,6 +110,16 @@ public class BlackJackController implements Initializable{
 				
 		}
 		
+	}
+	
+	@FXML
+	private void newAction(){
+		model.reset();
+		model.hum_draw();
+		model.hum_draw();
+		hitButton.setDisable(false);
+		drawButton.setDisable(false);
+		show();
 	}
 
 	@Override
