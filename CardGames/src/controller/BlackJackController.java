@@ -4,12 +4,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import view.MessageWin;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.stage.Popup;
+import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 import model.BModel;
 import model.Card;
@@ -22,6 +26,7 @@ public class BlackJackController implements Initializable{
 	private BModel model;
 	private Stage stage;
 	MessageWin mw =new MessageWin();
+	Popup pop = mw.getPop();
 	
 	
 	@FXML 
@@ -44,6 +49,21 @@ public class BlackJackController implements Initializable{
 	
 	public void addStage(Stage s){
 		stage=s;
+	}
+	
+	public void addPopNotifier(){
+		stage.xProperty().addListener(new ChangeListener<Number>() {
+		     public void changed(ObservableValue<? extends Number> observableValue, Number oldX, Number newX) {
+		     mw.setX(newX);
+		    }
+		});
+		
+		stage.yProperty().addListener(new ChangeListener<Number>() {
+		     public void changed(ObservableValue<? extends Number> observableValue, Number oldY, Number newY) {
+		     mw.setY(newY);
+		    }
+		});
+		
 	}
 	
 
@@ -94,7 +114,7 @@ public class BlackJackController implements Initializable{
 			
 		}
 		hitButton.setDisable(true);
-		mw.getPop().show(stage);
+		pop.show(stage);
 		
 		
 	}
@@ -106,7 +126,7 @@ public class BlackJackController implements Initializable{
 		if (model.getHumScore().bust){
 			//implement pop-up/message window
 			mw.setLabel("Player busted!");
-			mw.getPop().show(stage);
+			pop.show(stage);
 				
 		}
 		

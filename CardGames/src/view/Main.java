@@ -35,7 +35,9 @@ public class Main extends Application {
 		//the easy way - creates state though,
 		//depends on order in main function
 	    bc.addStage(primaryStage);
-	
+	    bc.addPopNotifier();
+	    
+	    
 	    Scene scene = new Scene( pane );
 	    primaryStage.setScene( scene );
 	    primaryStage.setTitle( "CardGames" );

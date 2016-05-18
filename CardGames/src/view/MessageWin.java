@@ -31,6 +31,17 @@ public class MessageWin   {
     
    public void setLabel(String s){
 	   label.setText(s);
+	 
+   }
+   
+   public void setX(Number n){
+	   //hardcoded now make them dependent on main window (size?) later I guess?
+	   popup.setX(250+(double)n);
+   }
+   
+   public void setY(Number n){
+	   //hardcoded now make them dependent on main window later I guess?
+	   popup.setY(175+(double)n);
    }
    
    public MessageWin(){
@@ -41,9 +52,11 @@ public class MessageWin   {
     popUpVBox.getChildren().add(ok);
     ok.setOnAction(handler);
     
+    popup.setWidth(50);
     popup.setAutoFix(false);
     popup.setHideOnEscape(true);
     popup.getContent().addAll(popUpVBox);
+    
 
     }
    
