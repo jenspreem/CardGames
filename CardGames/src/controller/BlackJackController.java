@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -7,7 +8,10 @@ import view.MessageWin;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -38,20 +42,15 @@ public class BlackJackController implements Initializable{
 	@FXML
 	private HBox playerHandfield; // Value injected by FXMLLoader
 	
-	@SuppressWarnings("unused")
-	private BlackJackController(){
-		//don't want people using it without model
-	}
-	
-	public BlackJackController(BModel m){
+	public BlackJackController(BModel m, Stage s){
 		model=m;
-	}
-	
-	public void addStage(Stage s){
 		stage=s;
+		
 	}
 	
-	public void addPopNotifier(){
+
+	
+	private void addPopNotifier(){
 		stage.xProperty().addListener(new ChangeListener<Number>() {
 		     public void changed(ObservableValue<? extends Number> observableValue, Number oldX, Number newX) {
 		     mw.setX(newX);
@@ -85,6 +84,14 @@ public class BlackJackController implements Initializable{
 	        playerHandfield.getChildren().add(iv2);
 	    }		
 	
+	}
+	
+	@FXML
+	private void toPoker() throws IOException{
+		Parent parent = FXMLLoader.load(getClass().getResource("/view/PokerGUI.fxml"));
+		Scene scene = new Scene(parent);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 	@FXML
@@ -143,7 +150,8 @@ public class BlackJackController implements Initializable{
 	}
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {		
+	public void initialize(URL location, ResourceBundle resources) {
+		addPopNotifier();
 		model.hum_draw();
 		model.hum_draw();
 		show();
