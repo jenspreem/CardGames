@@ -10,6 +10,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -17,17 +18,18 @@ import javafx.stage.Stage;
 
 public class PokerController implements Controller,Initializable {
 	
-	private BModel model;
+	private BModel model = new BModel();
 	private Stage stage;
 	MessageWin mw =new MessageWin(this);
+	private Button[] holdButtonArray= new Button[5];
+	
 	@FXML
 	private HBox aiHandfield; // Value injected by FXMLLoader
 	@FXML
 	private HBox playerHandfield; // Value injected by FXMLLoader
-	
-	public PokerController(BModel m){
-		model=m;
-	}
+	@FXML
+	private HBox buttonField; // Value injected by FXMLLoader
+
 
 	@Override
 	public void addPopNotifier() {
@@ -60,6 +62,15 @@ public class PokerController implements Controller,Initializable {
 	
 		model.hum_draw();
 		model.hum_draw();
+		model.ai_draw();
+		model.ai_draw();
+		//populate the holdbuttonArray
+		
+		for(int i = 0; i < 5; i++){
+			holdButtonArray[i] = new Button("HOLD");
+			holdButtonArray[i].setMinWidth(71);			
+		}
+		buttonField.getChildren().addAll(holdButtonArray);
 		show();
 
 		
@@ -74,6 +85,7 @@ private void show(){
 			ImageView iv2 = new ImageView();
 	        iv2.setImage(image);
 	        aiHandfield.getChildren().add(iv2);
+
 	    }
 		playerHandfield.getChildren().clear();
 		for (Card c:model.getHumHand().getCardsDrawn()){
@@ -81,6 +93,6 @@ private void show(){
 			ImageView iv2 = new ImageView();
 	        iv2.setImage(image);
 	        playerHandfield.getChildren().add(iv2);
-	    }		
+	    }	
 	}
 }

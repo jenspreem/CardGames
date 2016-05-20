@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
 xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
->
+ >
   <children>
     <MenuBar layoutX="0.0" layoutY="0.0" prefWidth="599.9999000000025">
       <menus>
@@ -32,7 +32,7 @@ xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
     </MenuBar>
     <HBox fx:id="aiHandfield" layoutX="100.0" layoutY="50.0" prefHeight="100.0" prefWidth="200.0" />
     <HBox fx:id="playerHandfield" layoutX="100.0" layoutY="200.0" prefHeight="100.0" prefWidth="200.0" />
-    <HBox fx:id="buttonField" layoutX="100.0" layoutY="300.0" prefHeight="25.0" prefWidth="200.0" />
+    <HBox fx:id="buttonField" layoutX="100.0" layoutY="300.0" prefHeight="25.0" minWidth="355" />
     <Button fx:id="replaceButton" layoutX="250" layoutY="325" prefWidth="80" mnemonicParsing="false" text="REPLACE" />
     
     

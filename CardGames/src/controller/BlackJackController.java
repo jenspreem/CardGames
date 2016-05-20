@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import model.BModel;
 import model.Card;
 
@@ -28,7 +29,8 @@ public class BlackJackController implements Initializable, Controller{
 	private BModel model = new BModel();
 	private Stage stage;
 	MessageWin mw =new MessageWin(this);
-	PokerController pc = new PokerController(model);
+	PokerController pc = new PokerController();
+
 	
 	
 	
@@ -83,12 +85,14 @@ public class BlackJackController implements Initializable, Controller{
 	@FXML
 	private void toPoker() throws IOException{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PokerGUI.fxml"));
-	    AnchorPane pane =  (AnchorPane) loader.load();
-
 		loader.setController(pc);
+		
+		
+		AnchorPane pane =  (AnchorPane) loader.load();
+	    
+
 		Scene scene = new Scene(pane);
 		stage.setScene(scene);
-		stage.show();
 	}
 	
 	@FXML

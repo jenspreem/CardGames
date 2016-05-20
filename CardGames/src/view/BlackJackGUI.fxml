@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
  xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
- fx:controller="controller.BlackJackController" >
+  fx:controller="controller.BlackJackController">
   <children>
     <HBox fx:id="aiHandfield" layoutX="100.0" layoutY="50.0" prefHeight="100.0" prefWidth="200.0" />
     <HBox fx:id="playerHandfield" layoutX="100.0" layoutY="200.0" prefHeight="100.0" prefWidth="200.0" />
