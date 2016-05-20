@@ -1,5 +1,6 @@
 package view;
 
+import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -13,6 +14,7 @@ public class MessageWin   {
     Button ok = new Button("ok");
     VBox popUpVBox = new VBox();
     Popup popup = new Popup();
+    Controller controller;
 
     
 	EventHandler<ActionEvent> handler = new EventHandler<ActionEvent>() {
@@ -23,29 +25,10 @@ public class MessageWin   {
     };
     
     
-    public Popup getPop(){
-    	return popup;
-    }
-    
-    
-    
-   public void setLabel(String s){
-	   label.setText(s);
-	 
-   }
    
-   public void setX(Number n){
-	   //hardcoded now make them dependent on main window (size?) later I guess?
-	   popup.setX(250+(double)n);
-   }
-   
-   public void setY(Number n){
-	   //hardcoded now make them dependent on main window later I guess?
-	   popup.setY(175+(double)n);
-   }
-   
-   public MessageWin(){
-	   
+   public MessageWin(Controller c){
+	
+	controller=c;
 	popUpVBox.setStyle("-fx-background-color: #D6D6D6;");
 	popUpVBox.setStyle("-fx-border-color: black; -fx-border-width: 1px; ");
     popUpVBox.getChildren().add(label);
@@ -60,6 +43,30 @@ public class MessageWin   {
 
     }
    
-
+   public Popup getPop(){
+   	return popup;
+   }
+   
+   
+   
+  public void setLabel(String s){
+	   label.setText(s);
+	 
+  }
+  
+  public void setX(Number n){
+	   //hardcoded now make them dependent on main window (size?) later I guess?
+	   popup.setX(250+(double)n);
+  }
+  
+  public void setY(Number n){
+	   //hardcoded now make them dependent on main window later I guess?
+	   popup.setY(175+(double)n);
+  }
+  
+  public void showPop(){
+	  popup.show(controller.getStage());
+	
+  }
 
 }

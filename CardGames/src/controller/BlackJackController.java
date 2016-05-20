@@ -10,27 +10,26 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Popup;
-import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 import model.BModel;
 import model.Card;
 
 
 
-public class BlackJackController implements Initializable{
+public class BlackJackController implements Initializable, Controller{
 
 	
-	private BModel model;
+	private BModel model = new BModel();
 	private Stage stage;
-	MessageWin mw =new MessageWin();
-	Popup pop = mw.getPop();
+	MessageWin mw =new MessageWin(this);
+	PokerController pc = new PokerController(model);
+	
 	
 	
 	@FXML 
@@ -41,16 +40,11 @@ public class BlackJackController implements Initializable{
 	private HBox aiHandfield; // Value injected by FXMLLoader
 	@FXML
 	private HBox playerHandfield; // Value injected by FXMLLoader
-	
-	public BlackJackController(BModel m, Stage s){
-		model=m;
-		stage=s;
-		
-	}
+
 	
 
 	
-	private void addPopNotifier(){
+	public void addPopNotifier(){
 		stage.xProperty().addListener(new ChangeListener<Number>() {
 		     public void changed(ObservableValue<? extends Number> observableValue, Number oldX, Number newX) {
 		     mw.setX(newX);
@@ -88,8 +82,11 @@ public class BlackJackController implements Initializable{
 	
 	@FXML
 	private void toPoker() throws IOException{
-		Parent parent = FXMLLoader.load(getClass().getResource("/view/PokerGUI.fxml"));
-		Scene scene = new Scene(parent);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PokerGUI.fxml"));
+	    AnchorPane pane =  (AnchorPane) loader.load();
+
+		loader.setController(pc);
+		Scene scene = new Scene(pane);
 		stage.setScene(scene);
 		stage.show();
 	}
@@ -121,7 +118,7 @@ public class BlackJackController implements Initializable{
 			
 		}
 		hitButton.setDisable(true);
-		pop.show(stage);
+		mw.showPop();
 		
 		
 	}
@@ -133,7 +130,9 @@ public class BlackJackController implements Initializable{
 		if (model.getHumScore().bust){
 			//implement pop-up/message window
 			mw.setLabel("Player busted!");
-			pop.show(stage);
+			mw.showPop();
+		drawButton.setDisable(true);
+		hitButton.setDisable(true);
 				
 		}
 		
@@ -151,12 +150,22 @@ public class BlackJackController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		addPopNotifier();
+	
 		model.hum_draw();
 		model.hum_draw();
 		show();
 
 		
+	}
+
+
+
+	public void addStage(Stage s) {
+		stage=s;		
+	}
+	
+	public Stage getStage(){
+		return stage;
 	}
 
 	

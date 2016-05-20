@@ -25,7 +25,6 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Games">
           <items>
-            <MenuItem mnemonicParsing="false" text="BlackJack" />
             <MenuItem mnemonicParsing="false" text="Poker" onAction="#toPoker" />
           </items>
         </Menu>
