@@ -21,7 +21,7 @@ public class BlackjackEvaluator {
         FaceValues = Collections.unmodifiableMap(aMap);
     }
 
-	public static BpointStatus getScore(Hand hand){
+	public static PointStatus getScore(Hand hand){
 		int minscore=0;
 		int maxscore=0;
 		ArrayList<Card> cards = hand.getCardsDrawn();
@@ -45,14 +45,14 @@ public class BlackjackEvaluator {
 		//if minscore bust then this is it
 		if (minscore >21)
 		{
-		    return new BpointStatus(true,minscore);
+		    return new PointStatus(true,minscore);
 		}
 		//if maxscore busts then use minscore
 		else if (maxscore>21){
-			return new BpointStatus(false,minscore);
+			return new PointStatus(false,minscore);
 		}
 		//if maxscore ok use maxscore
-		else return new BpointStatus(false,maxscore);
+		else return new PointStatus(false,maxscore);
 	}
 	
 	

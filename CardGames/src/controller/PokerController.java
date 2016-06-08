@@ -3,8 +3,8 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import model.BModel;
 import model.Card;
+import model.PModel;
 import view.MessageWin;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 public class PokerController implements Controller,Initializable {
 	
-	private BModel model = new BModel();
+	private PModel model = new PModel();
 	private Stage stage;
 	MessageWin mw =new MessageWin(this);
 	private Button[] holdButtonArray= new Button[5];
@@ -60,10 +60,8 @@ public class PokerController implements Controller,Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	
-		model.hum_draw();
-		model.hum_draw();
-		model.ai_draw();
-		model.ai_draw();
+		model.hum_draw(5);
+		model.ai_draw(5);
 		//populate the holdbuttonArray
 		
 		for(int i = 0; i < 5; i++){

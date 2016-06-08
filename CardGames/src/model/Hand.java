@@ -4,17 +4,10 @@ import java.util.ArrayList;
 
 public class Hand {
 	private ArrayList<Card> cards = new ArrayList<Card>();
-	private BpointStatus point_status;
 	
-	private void calcBScore(){
-		point_status=BlackjackEvaluator.getScore(this);
+	public PointStatus getScore(){
+		return new PointStatus(0);
 	}
-	
-	public BpointStatus getbScore(){
-		calcBScore();
-		return point_status;
-	}
-
 	
 	public void drawCard(Deck d){
 		this.cards.add(d.draw());

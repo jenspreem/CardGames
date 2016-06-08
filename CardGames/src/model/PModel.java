@@ -1,14 +1,15 @@
 package model;
 
-public class BModel {
+
+public class PModel {
 	private Hand hum_player;
 	private Hand ai_player;
 	private Deck deck;
 	
 	
-	public BModel(){
-		hum_player=new BlackJackHand();
-		ai_player=new BlackJackHand();
+	public PModel(){
+		hum_player=new PokerHand();
+		ai_player=new PokerHand();
 		deck=new Deck();
 		deck.shuffle();
 	}
@@ -53,8 +54,8 @@ public class BModel {
 	public void reset(){
 		//why create new BModel instance just replace fields
 		//better/worse?
-		hum_player=new BlackJackHand();
-		ai_player=new BlackJackHand();
+		hum_player=new PokerHand();
+		ai_player=new PokerHand();
 		deck=new Deck();
 		deck.shuffle();
 	}
@@ -62,5 +63,3 @@ public class BModel {
 	
 	
 	
-
-

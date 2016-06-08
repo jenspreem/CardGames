@@ -27,24 +27,24 @@ public class BlackjackEvaluatorTest {
 
 		Hand hand = new Hand();
 		hand.addCard(cards.get(12));
-		assertEquals(hand.getbScore().points,11);
+		assertEquals(hand.getScore().points,11);
 		assertEquals(hand.getCardsDrawn().get(0).toString(),"ACE_HEARTS");
-		assertFalse(hand.getbScore().bust);
+		assertFalse(hand.getScore().bust);
 		
 		hand.addCard(cards.get(24));
-		assertEquals(hand.getbScore().points,21);
+		assertEquals(hand.getScore().points,21);
 		assertEquals(hand.getCardsDrawn().get(1).toString(),"KING_DIAMONDS");
-		assertFalse(hand.getbScore().bust);
+		assertFalse(hand.getScore().bust);
 		
 		hand.addCard(cards.get(25));
-		assertEquals(hand.getbScore().points,12);
+		assertEquals(hand.getScore().points,12);
 		assertEquals(hand.getCardsDrawn().get(2).toString(),"ACE_DIAMONDS");
-		assertFalse(hand.getbScore().bust);
+		assertFalse(hand.getScore().bust);
 		
 		hand.addCard(cards.get(23));
-		assertEquals(hand.getbScore().points,22);
+		assertEquals(hand.getScore().points,22);
 		assertEquals(hand.getCardsDrawn().get(3).toString(),"QUEEN_DIAMONDS");
-		assertTrue(hand.getbScore().bust);
+		assertTrue(hand.getScore().bust);
 
 	}
 
