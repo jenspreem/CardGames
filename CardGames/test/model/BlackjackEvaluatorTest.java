@@ -25,7 +25,7 @@ public class BlackjackEvaluatorTest {
 	@Test
 	public void testGetScore() {
 
-		Hand hand = new Hand();
+		BlackJackHand hand = new BlackJackHand();
 		hand.addCard(cards.get(12));
 		assertEquals(hand.getScore().points,11);
 		assertEquals(hand.getCardsDrawn().get(0).toString(),"ACE_HEARTS");

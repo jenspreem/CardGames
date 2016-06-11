@@ -37,7 +37,7 @@ private static final Map<Face,Integer> FaceValues;
         FaceValues = Collections.unmodifiableMap(aMap);
     }
  
-public static Combo getScore(Hand hand){
+public static Combo getScore(PokerHand hand){
     ArrayList<Card> cards = hand.getCardsDrawn();
     boolean isFlusH=false;
     boolean isStraight=false;
@@ -48,7 +48,7 @@ public static Combo getScore(Hand hand){
     }
     Collections.sort(suits);
 
-    if (suits.get(0)==suits.get(5)){
+    if (suits.get(0)==suits.get(4)){
         isFlusH=true;
     }
 

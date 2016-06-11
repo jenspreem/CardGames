@@ -1,8 +1,8 @@
 package model;
 
 public class BModel {
-	private Hand hum_player;
-	private Hand ai_player;
+	private BlackJackHand hum_player;
+	private BlackJackHand ai_player;
 	private Deck deck;
 	
 	

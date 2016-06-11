@@ -7,10 +7,10 @@ public class PokerHand extends Hand {
 		point_status=PokerEvaluator.getScore(this);
 	}
 	
-	public PointStatus getScore(){
+	public PokerEvaluator.Combo getScore(){
 		calcScore();
 		
-		return new PointStatus(false,point_status.ordinal());
+		return point_status;
 	}
 	
 

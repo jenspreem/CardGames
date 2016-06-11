@@ -1,9 +1,13 @@
 package model;
 
+import java.util.Set;
+
+import model.PokerEvaluator.Combo;
+
 
 public class PModel {
-	private Hand hum_player;
-	private Hand ai_player;
+	private PokerHand hum_player;
+	private PokerHand ai_player;
 	private Deck deck;
 	
 	
@@ -14,11 +18,11 @@ public class PModel {
 		deck.shuffle();
 	}
 	
-	public PointStatus getAiScore(){
+	public Combo getAiScore(){
 	return ai_player.getScore();
 	}
 	
-	public PointStatus getHumScore(){
+	public Combo getHumScore(){
 	return hum_player.getScore();
 	}
 	
@@ -41,26 +45,31 @@ public class PModel {
 	}
 	
 	
-	public Hand getAiHand(){
+	public PokerHand getAiHand(){
 		return ai_player;
 	}
 	
-	public Hand getHumHand(){
+	public PokerHand getHumHand(){
 		return hum_player;
 	}
 	
-	public void hum_replace(int[] ia){
+	public void hum_replace(Set<Integer> ia){
 		for (int i: ia){
 		hum_player.replaceCard(deck, i);
 		}
 	}
 	
-	public void ai_replace(int[] ia){
+	public void ai_replace(Set<Integer> ia){
 		for (int i: ia){
-		hum_player.replaceCard(deck, i);
+		ai_player.replaceCard(deck, i);
 		}
 	}
-
+	
+	public void ai_replace(int i ){
+		
+		ai_player.replaceCard(deck, i);
+		}
+	
 	
 	public void reset(){
 		//why create new BModel instance just replace fields
