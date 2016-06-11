@@ -24,5 +24,9 @@ public class Hand {
 	public void sort(){
 		this.cards.sort(null);
 	}
+	
+	public void replaceCard(Deck d, int i){
+		this.cards.set(i, d.draw());
+	}
 
 }

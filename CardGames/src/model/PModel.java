@@ -49,6 +49,17 @@ public class PModel {
 		return hum_player;
 	}
 	
+	public void hum_replace(int[] ia){
+		for (int i: ia){
+		hum_player.replaceCard(deck, i);
+		}
+	}
+	
+	public void ai_replace(int[] ia){
+		for (int i: ia){
+		hum_player.replaceCard(deck, i);
+		}
+	}
 
 	
 	public void reset(){

@@ -33,7 +33,10 @@ xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
     <HBox fx:id="aiHandfield" layoutX="100.0" layoutY="50.0" prefHeight="100.0" prefWidth="200.0" />
     <HBox fx:id="playerHandfield" layoutX="100.0" layoutY="200.0" prefHeight="100.0" prefWidth="200.0" />
     <HBox fx:id="buttonField" layoutX="100.0" layoutY="300.0" prefHeight="25.0" minWidth="355" />
-    <Button fx:id="replaceButton" layoutX="250" layoutY="325" prefWidth="80" mnemonicParsing="false" text="REPLACE" />
+    <Button fx:id="replaceButton" layoutX="100" layoutY="350" prefWidth="80" mnemonicParsing="false" text="REPLACE"
+    onAction="#replaceAction" />
+    <Button fx:id="newGameButton" layoutX="355" layoutY="350" prefWidth="100" mnemonicParsing="false" text="NEW GAME"
+    onAction="#newAction" />
     
     
 
