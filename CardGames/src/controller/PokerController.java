@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.ResourceBundle;
@@ -9,6 +10,7 @@ import java.util.Set;
 import model.Card;
 import model.PModel;
 import model.PokerEvaluator.Combo;
+import model.PokerHand;
 import view.MessageWin;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -83,6 +85,10 @@ public class PokerController implements Controller,Initializable {
 	}
 
 	private void ai_replaceDecision() {
+// sort hand
+		model.getAiHand().sort();
+		ArrayList<Card> cards = model.getAiHand().getCardsDrawn(); 
+		
 		switch(aiScore) {
 		    case HIGHCARD:
 		        //draw all new
@@ -93,25 +99,77 @@ public class PokerController implements Controller,Initializable {
 		        break;
 		    case PAIR:
 		        //find pair, keep it, replace others
+		    	for (int i=0;i<cards.size()-1;i++){
+		    		if (cards.get(i)==cards.get(i+1));
+		    		{
+		    			aiCardsToHold.add(i);
+		    			aiCardsToHold.add(i+1);
+
+		    		}
+		    			
+		    	}
 
 		        break;
 		    case TWO_PAIRS:
 		        //find pairS keep them, replace the single
+		    	for (int i=0;i<cards.size()-1;i++){
+		    		if (cards.get(i)==cards.get(i+1));
+		    		{
+		    			aiCardsToHold.add(i);
+		    			aiCardsToHold.add(i+1);
+
+		    		}
+		    			
+		    	}
 
 		        break;
 		     case THREE:
-		        //find three to keep
+		        //find three to keep		    	
+		    	 for (int i=0;i<cards.size()-1;i++){
+		    		if (cards.get(i)==cards.get(i+1)&&cards.get(i)==cards.get(i+2));
+		    		{
+		    			aiCardsToHold.add(i);
+		    			aiCardsToHold.add(i+1);
+		    			aiCardsToHold.add(i+2);
+
+		    		}
+		    			
+		    	}
 
 		        break;
 		    case FOUR:
 		    	//find four to keep
+		    	 for (int i=0;i<cards.size()-1;i++){
+		    		if (cards.get(i)!=cards.get(i+1))
+		    		{
+		    		continue;
+		    		}
+		    		else 
+		    		{
+		    			aiCardsToHold.add(i);
+
+		    		}
+		    		if(cards.get(4)==cards.get(3)){
+		    			aiCardsToHold.add(4);
+		    		}
+		    			
+		    	}
+		    	
 		       break;
-		    	//straight, flush, are just good enough to keep
+		    	//straight, flush, full-house are just good enough to keep
 		    default:
-		        System.out.println("Some other combo");
+		        
+		    	for (int i=0;i<cards.size();i++){
+		    		aiCardsToHold.add(i);
+		    	}
 
 		        }
-
+		Set<Integer> temp_set= new HashSet<Integer>();
+		temp_set.addAll(allIndex);
+		//get cards to replace
+		temp_set.removeAll(aiCardsToHold);
+		model.ai_replace(temp_set);
+		aiScore=model.getAiHand().getScore();
 		
 	}
 
