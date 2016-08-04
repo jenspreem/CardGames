@@ -72,6 +72,7 @@ public class PokerController implements Controller,Initializable {
 		aiScore=model.getAiHand().getScore();
 		model.getAiHand().sort();
 		ai_replaceDecision();
+		show();
 		//then victory declaration
 		aiScore=model.getAiHand().getScore();
 		calcVictory();
@@ -80,7 +81,19 @@ public class PokerController implements Controller,Initializable {
 	}
 	
 	private void calcVictory() {
-		// TODO Auto-generated method stub
+		// if combo bigger than other return victor
+		if (aiScore.compareTo(playerScore)<0){
+			System.out.println("Player wins");
+			
+		}
+		if (aiScore.compareTo(playerScore)>0){
+			System.out.println("Ai wins");
+			
+		}
+		//replace this with a calculation comparing the face values
+		else 	System.out.println("Draw");
+
+		
 		
 	}
 
@@ -175,6 +188,15 @@ public class PokerController implements Controller,Initializable {
 
 	@FXML
 	private void newAction(){
+		model.reset();
+		model.hum_draw(5);
+		replaceButton.setDisable(false);
+		playerCardsToHold = new HashSet<Integer>(5);
+		aiCardsToHold = new HashSet<Integer>(5);
+		for (Button b :holdButtonArray){
+			b.setDisable(false);
+		};
+		show();
 		
 	}
 	
